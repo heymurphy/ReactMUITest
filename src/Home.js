@@ -58,7 +58,7 @@ const Home = () => {
             <ChartSamples />
 
             {/* Info Cards Section */}
-            <Grid container spacing={3} sx={{ mt: 4, alignItems: "stretch", minHeight: "200px" }}>
+            <Grid container spacing={3} sx={{ mt: 4, alignItems: "stretch", minHeight: "200px", marginTop: "0em" }}>
               {[
                 {
                   title: "Streamline Retail",

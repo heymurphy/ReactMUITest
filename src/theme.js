@@ -57,7 +57,7 @@ const theme = createTheme({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      margin: "2em 0",
+      margin: "3em 0",
       padding: "1rem",
       borderRadius: "16px", // Rounded edges
     },
