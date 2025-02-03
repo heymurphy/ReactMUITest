@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button, Alert } from "@mui/material";
 import { motion } from "framer-motion";
-import { useAuth } from "../context/AuthContext"; // ✅ Uses AuthContext
+import { useAuth } from "../context/AuthContext";
 
 const backdropVariants = {
   hidden: { opacity: 0 },
