@@ -1,78 +1,183 @@
-import React, { useState } from "react";
-import { Box, Typography, TextField, Button, Alert } from "@mui/material";
-import { motion } from "framer-motion";
-import { useAuth } from "../context/AuthContext"; 
+import { createTheme } from "@mui/material/styles";
 
-const backdropVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: "easeIn" } },
-};
+const theme = createTheme({
+  palette: {
+    mode: "dark", // Ensures dark mode styling
+    primary: {
+      main: "#32CD32", // Lime Green
+    },
+    secondary: {
+      main: "#ADFF2F", // Lighter Lime Green (highlight)
+    },
+    onwhite: {
+      main: "#333",
+    },
+    action: {
+      active: "#228B22", // Darker Lime Green
+    },
+    background: {
+      default: "#333333", // Charcoal Grey background
+      paper: "#121212", // Slightly off-black for cards and surfaces
+    },
+    text: {
+      primary: "#F5F5F5", // Off-white text
+      secondary: "#ADFF2F", // Lighter Lime Green for highlights
+    },
+  },
+  typography: {
+    fullWidthContainer: {
+      width: "100%",
+      maxWidth: "100%",
+      height: "fit-content",
+      backgroundColor: "rgba(10, 1, 19, 0.6)", // Pebble Grey with transparency (60% opacity)
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: "0",
+      borderRadius: "16px", // Rounded edges
+    },
+    PaperBlack: {
+      width: "100%",
+      maxWidth: "100%",
+      height: "fit-content",
+      backgroundColor: "rgba(9, 1, 16, 0.7)", // Fully transparent Pebble Grey
+      backgroundImage: "linear-gradient(to bottom, rgba(10, 10, 11, 0.3), rgba(83, 16, 172, 0.1), rgba(199, 28, 205, 0.1), rgba(192, 241, 162, 0.1), rgba(2, 0, 4, 0.3))",
 
-const modalVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: "easeInOut" } },
-  exit: { opacity: 0, scale: 0.8, transition: { duration: 0.3, ease: "easeInOut" } },
-};
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "2em auto 12em auto",
+      padding: "3em 3em 8em 3em",
+      borderRadius: "16px", // Rounded edges
+    },
+    fullWidthContainerWhite: {
+      width: "100%",
+      maxWidth: "100%",
+      height: "fit-content",
+      backgroundColor: "rgba(253, 249, 252, 0.6)", // Fully transparent Pebble Grey
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "3em 0",
+      padding: "1rem",
+      borderRadius: "16px", // Rounded edges
+    },
+    h1: {
+      fontSize: "2rem",
+      margin: "0 0",
+      fontWeight:"200",
+      "@media (min-width:400px)": {
+        fontSize: "1.8rem",
+        marginTop:"-1em",
+      },
+      "@media (min-width:960px)": {
+        fontSize: "4rem",
+      },
+      "@media (min-width:600px)": {
+        fontSize: "3rem",
+      },
+      "@media (min-width:960px)": {
+        fontSize: "4rem",
+      },
+    },
+    h5: {
+      fontSize: "2rem",
+      paddingBottom: "0",
+      opacity: ".8",
+      "@media (min-width:400px)": {
+        fontSize: ".7rem",
+        marginTop: ".75rem",
+      },
+      "@media (min-width:960px)": {
+        fontSize: "01.5rem",
+      },
+    },
+    h4: {
+      opacity: ".8",
+    },
+     h6: {
+      opacity: ".8",
+    },
+    body2: {
+      opacity: ".8",
+    },
+    fontFamily: "Roboto, Arial, sans-serif",
+  },
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          "&.nav-link": {
+            textDecoration: "none",
+            cursor: "pointer",
+            transition: "color 0.3s ease",
+            "&:hover": { color: "rgb(186, 255, 186)" }, // Lighter Lime on hover
+            "&.active": { color: "rgb(26, 102, 26)" }, // Darker Lime when active
+          },
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: "#333333", // Charcoal Grey background applied globally
+          backgroundImage:
+            "linear-gradient(rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.8)), url('/assets/header-background.webp')",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          fontSize: "2rem",
+          fontWeight: "200",
+          letterSpacing: "-.035em",
+          background: "linear-gradient(to bottom,rgb(182, 249, 167), #ADFF2F,rgb(97, 88, 98))",
+          backgroundSize: "100% 100%",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#333",
+            transition: "border-color 0.3s ease",
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#c2cead", // Hover state color (you can adjust if needed)
+            transition: "border-color 0.3s ease",
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#9bab80 !important", // Focus (active) state color
+            transition: "border-color 0.3s ease",
+          },
+          "&:focus": {
+            outline: "none !important",
+            boxShadow: "none !important",
+          },
+        },
+      },
+    },    
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          backgroundColor: "rgb(114, 244, 54)", // Default button color (Lime Green)
+          "&:hover": {
+            backgroundColor: "#228B22", // Darker Lime on hover
+          },
+          "&:active": {
+            backgroundColor: "#1A661A", // Even darker on active
+          },
+        },
+      },
+    },
+  },
+});
 
-const Login = ({ onClose }) => {
-  const { login } = useAuth(); 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError(null);
-    setSuccessMessage("");
-
-    try {
-      await login(email, password);
-      setSuccessMessage("✅ Success! Redirecting...");
-      setTimeout(() => {
-        onClose(); 
-      }, 1500);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  return (
-    <motion.div className="backdrop" variants={backdropVariants} initial="hidden" animate="visible" exit="exit" onClick={onClose} style={{
-      position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000,
-    }}>
-      <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()}>
-        <Box sx={{ 
-          width: 450, 
-          height: 450, 
-          borderRadius: "50%", 
-          backgroundColor: "black",
-          display: "flex", 
-          flexDirection: "column", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          boxShadow: `
-            0px 0px 60px 20px rgba(213, 0, 249, 0.7),
-            0px 0px 100px 40px rgba(120, 7, 193, 0.5),
-            0px 0px 140px 60px rgba(78, 7, 113, 0.4),
-            0px 0px 180px 80px rgba(2, 0, 4, 0.3)`, 
-          padding: "30px", 
-          overflow: "hidden" 
-        }}>
-          <Typography variant="h5" color="secondary" sx={{ mb: 3, textAlign: "center" }}>Login</Typography>
-          {successMessage && <Alert severity="success" sx={{ mb: 2, width: "80%" }}>{successMessage}</Alert>}
-          <Box component="form" onSubmit={handleLogin} sx={{ width: "80%", display: "flex", flexDirection: "column", gap: 2 }}>
-            <TextField label="Email" variant="outlined" fullWidth autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} sx={{ backgroundColor: "#9C27B0", color: "#fff", borderRadius: "8px", input: { color: "#fff" } }} />
-            <TextField label="Password" type="password" variant="outlined" fullWidth autoComplete="off" value={password} onChange={(e) => setPassword(e.target.value)} sx={{ backgroundColor: "#9C27B0", color: "#fff", borderRadius: "8px", input: { color: "#fff" } }} />
-            {error && <Typography variant="body2" color="error" sx={{ textAlign: "center" }}>{error}</Typography>}
-            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 1, fontWeight: "bold", py: 1 }}>Login</Button>
-            <Button onClick={onClose} color="secondary" size="small" sx={{ mt: 1, fontWeight: "bold", textTransform: "none", alignSelf: "center" }}>Close</Button>
-          </Box>
-        </Box>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-export default Login;
+export default theme;
