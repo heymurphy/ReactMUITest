@@ -43,7 +43,7 @@ const Login = ({ onClose }) => {
       position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000,
     }}>
       <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()}>
-        <Box sx={{ width: 450, height: 450, borderRadius: "50%", backgroundColor: "black", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 80px 30px rgba(213, 0, 249, 0.1)", padding: "30px", overflow: "hidden" }}>
+        <Box sx={{ width: 450, height: 450, borderRadius: "50%", backgroundImage: "linear-gradient(to bottom, rgba(10, 10, 11, 0.6), rgba(83, 16, 172, 0.4), rgba(199, 28, 205, 0.4), rgba(192, 241, 162, 0.3), rgba(2, 0, 4, 0.4))", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "0px 0px 80px 30px rgba(213, 0, 249, 0.1)", padding: "30px", overflow: "hidden" }}>
           <Typography variant="h5" color="secondary" sx={{ mb: 3, textAlign: "center" }}>Login</Typography>
           {successMessage && <Alert severity="success" sx={{ mb: 2, width: "80%" }}>{successMessage}</Alert>}
           <Box component="form" onSubmit={handleLogin} sx={{ width: "80%", display: "flex", flexDirection: "column", gap: 2 }}>
