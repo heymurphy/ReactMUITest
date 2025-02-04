@@ -17,8 +17,8 @@ const ChartSamples = () => {
    <Grid item xs={12} sm={6} md={4}>
      <Card sx={{ height: '100%', minHeight: '200px' }}>
        <CardContent>
-         <Typography variant="h6" color="secondary">Total Sales</Typography>
-         <Typography variant="h4" color="textPrimary">$120,000</Typography>
+         <Typography variant="h6" color="secondary" sx={{ opacity: ".7"}}>Total Sales</Typography>
+         <Typography variant="h4" color="textPrimary" sx={{ opacity: ".7"}}>$120,000</Typography>
          <ResponsiveContainer width="100%" height={100}>
            <LineChart data={[{ name: "Jan", value: 400 }, { name: "Feb", value: 300 }, { name: "Mar", value: 500 }, { name: "Apr", value: 600 }, { name: "May", value: 700 }]}>
              <CartesianGrid strokeDasharray="3 3" />
@@ -36,8 +36,8 @@ const ChartSamples = () => {
    <Grid item xs={12} sm={6} md={4}>
      <Card sx={{ height: '100%', minHeight: '200px' }}>
        <CardContent>
-         <Typography variant="h6" color="secondary">Active Users</Typography>
-         <Typography variant="h4" color="textPrimary">1,250</Typography>
+         <Typography variant="h6" color="secondary" sx={{ opacity: ".7"}}>Active Users</Typography>
+         <Typography variant="h4" color="textPrimary" sx={{ opacity: ".7"}}>1,250</Typography>
          <ResponsiveContainer width="100%" height={100}>
            <BarChart data={[{ name: "Jan", value: 400 }, { name: "Feb", value: 300 }, { name: "Mar", value: 500 }, { name: "Apr", value: 600 }, { name: "May", value: 700 }]}>
              <CartesianGrid strokeDasharray="3 3" />
@@ -55,8 +55,8 @@ const ChartSamples = () => {
    <Grid item xs={12} sm={6} md={4}>
      <Card sx={{ height: '100%', minHeight: '200px' }}>
        <CardContent>
-         <Typography variant="h6" color="secondary">Conversion Rate</Typography>
-         <Typography variant="h4" color="textPrimary">7.5%</Typography>
+         <Typography variant="h6" color="secondary" sx={{ opacity: ".7"}}>Conversion Rate</Typography>
+         <Typography variant="h4" color="textPrimary" sx={{ opacity: ".7"}}>7.5%</Typography>
          <ResponsiveContainer width="100%" height={100}>
            <AreaChart data={[{ name: "Jan", value: 400 }, { name: "Feb", value: 300 }, { name: "Mar", value: 500 }, { name: "Apr", value: 600 }, { name: "May", value: 700 }]}>
              <CartesianGrid strokeDasharray="3 3" />

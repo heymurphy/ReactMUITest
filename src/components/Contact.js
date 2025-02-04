@@ -5,8 +5,8 @@ import theme from "../theme";
 const Contact = () => {
     return (
 
-<Box sx={{ mt: 5, p: 3, backgroundColor: theme.palette.background.paper, borderRadius: 2, width: { xs: '100%', md: '45%' }, margin: '0 auto' }}>
-<Typography variant="h4" color="secondary" gutterBottom>
+<Box sx={{ mt: 5, p: 3, backgroundColor: "rgba(10, 1, 19, 0.6)", borderRadius: 2, width: { xs: '100%', md: '45%' }, margin: '0 auto' }}>
+<Typography variant="h4" color="secondary" gutterBottom sx={{ opacity: ".5"}}>
   Contact Us
 </Typography>
 <form>
@@ -21,7 +21,7 @@ const Contact = () => {
       <TextField placeholder="Message" multiline rows={4} fullWidth />
     </Grid>
     <Grid item xs={12}>
-      <Button type="submit" variant="contained" sx={{ width: '35%', mx: 'auto', display: 'block' }}>
+      <Button type="submit" variant="contained" sx={{ width: '35%', mx: 'auto', display: 'block', opacity: ".65"}}>
         Submit
       </Button>
     </Grid>

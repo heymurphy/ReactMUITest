@@ -83,7 +83,16 @@ const NavBar = ({ handleLoginOpen, handleSignUpOpen }) => {
 
           {currentUser ? (
             <>
-              <Typography variant="body1" sx={{ fontWeight: "bold", color: "limegreen" }}>
+              <NavLink to="/about" style={{ textDecoration: "none" }}>
+                <Button color="secondary">About</Button>
+              </NavLink>
+              <NavLink to="/case-studies" style={{ textDecoration: "none" }}>
+                <Button color="secondary">Case Studies</Button>
+              </NavLink>
+              <NavLink to="/contact-us" style={{ textDecoration: "none" }}>
+                <Button color="secondary">Contact Us</Button>
+              </NavLink>
+              <Typography variant="body1" sx={{ fontWeight: "bold", color: "#ADFF2F" }}>
                 {currentUser.username || currentUser.name || currentUser.email}
               </Typography>
               <Button variant="contained" color="secondary" onClick={logout}>

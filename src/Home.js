@@ -38,6 +38,7 @@ const Home = () => {
                 mt: 2,
                 color: theme.palette.secondary.main,
                 textAlign: "center",
+                opacity: ".8",
               }}
             >
               QSchool Sports Technology
@@ -49,6 +50,8 @@ const Home = () => {
                 color: theme.palette.secondary.main,
                 textAlign: "center",
                 paddingBottom: "1em",
+                opacity: ".6",
+                letterSpacing: "-.011em",
               }}
             >
               We have a full range of software to support your business.
@@ -89,6 +92,7 @@ const Home = () => {
                       borderRadius: 2,
                       boxShadow: 3,
                       color: "#F5F5F5",
+                      opacity: ".9",
                       p: 2,
                     }}
                   >
@@ -114,7 +118,7 @@ const Home = () => {
               sx={{
                 mt: 5,
                 p: 3,
-                backgroundColor: theme.palette.background.paper,
+                backgroundColor: "rgba(10, 1, 19, 0.6)",
                 borderRadius: 2,
                 boxShadow: 3,
                 width: "100%",
@@ -122,7 +126,7 @@ const Home = () => {
                 margin: "1.5em auto 1.5em auto",
               }}
             >
-              <Typography variant="h4" color="secondary" gutterBottom>
+              <Typography variant="h4" color="secondary" gutterBottom sx={{ opacity: ".5"}}>
                 Competitive Analysis
               </Typography>
               <DenseTable />

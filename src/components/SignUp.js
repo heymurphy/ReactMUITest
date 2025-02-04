@@ -63,38 +63,40 @@ const SignUp = ({ onClose }) => {
         zIndex: 1000,
       }}
     >
-      <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit">
+       <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()}>
         <Box
           sx={{
-            width: 450,
-            height: 500,
-            borderRadius: "20px",
+            width: 650,
+            height: 650,
+            borderRadius: "50% 50%",
             backgroundColor: "black",
+            backgroundImage: "linear-gradient(to bottom, rgba(10, 10, 11, 0.6), rgba(83, 16, 172, 0.3), rgba(199, 28, 205, 0.3), rgba(192, 241, 162, 0.1), rgba(2, 0, 4, 0.3))",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            boxShadow: "0px 0px 50px rgba(213, 0, 249, 0.5)",
+            boxShadow: "0px 0px 80px 30px rgba(213, 0, 249, 0.15)",
             padding: "30px",
           }}
         >
-          <Typography variant="h5" color="secondary" sx={{ mb: 3, textAlign: "center" }}>
-            Sign Up
+          <Typography variant="h5" color="secondary" sx={{ mb: 3, textAlign: "center", paddingTop:"2em", opacity: ".7" }}>
+            Create Your Account
           </Typography>
 
           {successMessage && <Alert severity="success">{successMessage}</Alert>}
           {error && <Alert severity="error">{error}</Alert>}
 
-          <Box component="form" onSubmit={handleSignUp} sx={{ width: "80%", display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box component="form" onSubmit={handleSignUp} sx={{ width: "80%", display: "flex", flexDirection: "column", gap: 2, paddingTop: "0em" }}>
             <TextField label="Name" fullWidth required value={name} onChange={(e) => setName(e.target.value)} />
             <TextField label="Username" fullWidth value={username} onChange={(e) => setUsername(e.target.value)} />
             <TextField label="Email" type="email" fullWidth required value={email} onChange={(e) => setEmail(e.target.value)} />
             <TextField label="Password" type="password" fullWidth required value={password} onChange={(e) => setPassword(e.target.value)} />
             <TextField label="Profile Picture URL" fullWidth value={profilePicture} onChange={(e) => setProfilePicture(e.target.value)} />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              Sign Up
+            <Button type="submit" variant="contained" color="primary" size="large" 
+  sx={{ width: "30%", px: 2, fontWeight: "bold", alignSelf: "center", margin: "1em 0 0 0", opacity: ".7"  }}>
+              Submit
             </Button>
-            <Button onClick={onClose} color="secondary">
+            <Button onClick={onClose} color="secondary" size="small" sx={{ width: "30%", px: 2, fontWeight: "normal", alignSelf: "center", opacity: ".7" }}>
               Close
             </Button>
           </Box>
