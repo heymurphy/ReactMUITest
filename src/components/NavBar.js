@@ -92,8 +92,8 @@ const NavBar = ({ handleLoginOpen, handleSignUpOpen }) => {
               <NavLink to="/contact-us" style={{ textDecoration: "none" }}>
                 <Button color="secondary">Contact Us</Button>
               </NavLink>
-              <Typography variant="body1" sx={{ fontWeight: "bold", color: "#ADFF2F" }}>
-                {currentUser.username || currentUser.name || currentUser.email}
+              <Typography variant="body1" sx={{ fontSize: ".7em", fontWeight: "normal", textTransform: "Uppercase", color: "rgba(235, 232, 240, 0.9)", textAlign:"center"}}>
+                Welcome back<Typography variant="body1" sx={{textTransform: "Uppercase", fontWeight: "bold", textAlign:"center"}}>✺ {currentUser.username || currentUser.name || currentUser.email} ✺</Typography>
               </Typography>
               <Button variant="contained" color="secondary" onClick={logout}>
                 Logout
