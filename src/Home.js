@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, Box, Container, Typography, Grid, Card, CardContent } from "@mui/material";
+import { AnimatePresence } from "framer-motion";
 import theme from "./theme";
 import LayoutWrapper from "./components/LayoutWrapper";
 import DenseTable from "./components/DenseTable";
@@ -10,13 +11,20 @@ import Footer from "./components/Footer";
 import ChartSamples from "./components/ChartSamples";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import { AnimatePresence } from "framer-motion"; // ✅ Ensures smooth modal animations
+import { useAuth } from "./context/AuthContext";
 
 const Home = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const [signUpOpen, setSignUpOpen] = useState(false);
+  const [isModalClosed, setIsModalClosed] = useState(true); // New state to track modal exit
 
-  const handleLoginOpen = () => setLoginOpen(true);
+  // When opening the login modal, immediately mark the modal as "not closed"
+  const handleLoginOpen = () => {
+    setIsModalClosed(false);
+    setLoginOpen(true);
+  };
+
+  // When closing the modal, just set loginOpen to false; AnimatePresence will call onExitComplete afterward.
   const handleLoginClose = () => setLoginOpen(false);
 
   const handleSignUpOpen = () => setSignUpOpen(true);
@@ -26,8 +34,12 @@ const Home = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ minHeight: "100vh", paddingBottom: "2rem" }}>
-        {/* ✅ Passes the functions to NavBar */}
-        <NavBar handleLoginOpen={handleLoginOpen} handleSignUpOpen={handleSignUpOpen} /> 
+        {/* Pass the new isModalClosed prop to NavBar */}
+        <NavBar 
+          handleLoginOpen={handleLoginOpen} 
+          handleSignUpOpen={handleSignUpOpen} 
+          isModalClosed={isModalClosed}
+        />
 
         <Container>
           <LayoutWrapper>
@@ -100,11 +112,7 @@ const Home = () => {
                       <Typography variant="h6" color="secondary">
                         {card.title}
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textPrimary"
-                        sx={{ pt: 2 }}
-                      >
+                      <Typography variant="body2" color="textPrimary" sx={{ pt: 2 }}>
                         {card.description}
                       </Typography>
                     </CardContent>
@@ -126,7 +134,7 @@ const Home = () => {
                 margin: "1.5em auto 1.5em auto",
               }}
             >
-              <Typography variant="h4" color="secondary" gutterBottom sx={{ opacity: ".5"}}>
+              <Typography variant="h4" color="secondary" gutterBottom sx={{ opacity: ".5" }}>
                 Competitive Analysis
               </Typography>
               <DenseTable />
@@ -138,10 +146,10 @@ const Home = () => {
         </Container>
       </Box>
 
-      {/* ✅ Login & Sign Up Modals with Smooth Animation */}
-      <AnimatePresence>
+      {/* Login & Sign Up Modals with AnimatePresence */}
+      <AnimatePresence onExitComplete={() => setIsModalClosed(true)}>
         {loginOpen && <Login onClose={handleLoginClose} />}
-        {signUpOpen && <SignUp onClose={handleSignUpClose} />} 
+        {signUpOpen && <SignUp onClose={handleSignUpClose} />}
       </AnimatePresence>
     </ThemeProvider>
   );
